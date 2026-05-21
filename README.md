@@ -34,3 +34,5 @@ Este repositório tem como objetivo armazenar e organizar exercícios práticos 
 ---
 
 ## 📂 Estrutura do repositório
+
+- Os exercícios são separados por Branches.
