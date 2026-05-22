@@ -1,4 +1,4 @@
-# 🐍 Exercícios 29–32 | Depuração e Tratamento de Erros
+# 📚 Exercícios 29–32 | Depuração e Tratamento de Erros
 
 Este branch reúne os exercícios 29 a 32, com foco em depuração, tratamento de erros e correção de problemas comuns em Python.
 
