@@ -1,0 +1,6 @@
+# Exercício 34
+# Instalar pacote requests
+
+cd Desktop\
+
+python -m pip install requests
