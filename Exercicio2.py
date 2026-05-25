@@ -1,123 +1,142 @@
-# EXERCÍCIO 28 - SISTEMA COMPLETO
-
 # Classe para representar um produto
 class Produto:
+
+    # Método construtor da classe
     def __init__(self, nome, preco):
-        self.nome = nome
-        self.preco = preco
+
+        self.nome = nome  # Guarda o nome do produto
+
+        self.preco = preco  # Guarda o preço do produto
 
 
-# Lista para armazenar os produtos
-produtos = []
+produtos = []  # Lista que armazenará todos os produtos
 
 
-# Função para cadastrar produto
+# Função responsável por cadastrar produtos
 def cadastrar_produto():
-    try:
-        nome = input("Digite o nome do produto: ")
 
-        preco = float(input("Digite o preço do produto: R$ "))
+    try:  # Tenta executar o código abaixo
 
-        if preco <= 0:
-            print("Preço inválido!")
-            return
+        nome = input("Digite o nome do produto: ")  # Solicita o nome do produto
 
-        novo_produto = Produto(nome, preco)
+        preco = float(input("Digite o preço do produto: R$ "))  # Solicita o preço e converte para float
 
-        produtos.append(novo_produto)
+        if preco <= 0:  # Verifica se o preço é inválido
 
-        print("Produto cadastrado com sucesso!")
+            print("Preço inválido!")  # Exibe mensagem de erro
 
-    except ValueError:
-        print("Erro: Digite um valor numérico válido!")
+            return  # Encerra a função
+
+        novo_produto = Produto(nome, preco)  # Cria um objeto da classe Produto
+
+        produtos.append(novo_produto)  # Adiciona o produto na lista
+
+        print("Produto cadastrado com sucesso!")  # Mensagem de sucesso
+
+    except ValueError:  # Captura erro caso o usuário digite texto no preço
+
+        print("Erro: Digite um valor numérico válido!")  # Mensagem de erro
 
 
-# Função para listar produtos
+# Função para listar os produtos cadastrados
 def listar_produtos():
 
-    if len(produtos) == 0:
-        print("Nenhum produto cadastrado.")
-        return
+    if len(produtos) == 0:  # Verifica se não há produtos cadastrados
 
-    print("\n=== LISTA DE PRODUTOS ===")
+        print("Nenhum produto cadastrado.")  # Exibe mensagem
 
-    for indice, produto in enumerate(produtos):
-        print(f"{indice} - {produto.nome} - R$ {produto.preco:.2f}")
+        return  # Encerra a função
+
+    print("\n=== LISTA DE PRODUTOS ===")  # Título da listagem
+
+    for indice, produto in enumerate(produtos):  # Percorre a lista mostrando índice e produto
+
+        print(f"{indice} - {produto.nome} - R$ {produto.preco:.2f}")  # Exibe os dados do produto
 
 
-# Função para comprar produto
+# Função para comprar um produto
 def comprar_produto():
 
-    try:
+    try:  # Tenta executar o código
 
-        if len(produtos) == 0:
-            print("Não existem produtos cadastrados.")
-            return
+        if len(produtos) == 0:  # Verifica se existem produtos cadastrados
 
-        listar_produtos()
+            print("Não existem produtos cadastrados.")  # Exibe mensagem
 
-        indice = int(input("\nDigite o número do produto: "))
+            return  # Encerra a função
 
-        if indice < 0 or indice >= len(produtos):
-            print("Produto inexistente!")
-            return
+        listar_produtos()  # Mostra os produtos disponíveis
 
-        quantidade = int(input("Digite a quantidade: "))
+        indice = int(input("\nDigite o número do produto: "))  # Solicita o índice do produto
 
-        if quantidade <= 0:
-            print("Quantidade inválida!")
-            return
+        if indice < 0 or indice >= len(produtos):  # Verifica se o índice existe
 
-        produto = produtos[indice]
+            print("Produto inexistente!")  # Exibe mensagem de erro
 
-        total = produto.preco * quantidade
+            return  # Encerra a função
 
-        print("\n=== RESUMO DA COMPRA ===")
-        print(f"Produto: {produto.nome}")
-        print(f"Quantidade: {quantidade}")
-        print(f"Total a pagar: R$ {total:.2f}")
+        quantidade = int(input("Digite a quantidade: "))  # Solicita a quantidade
 
-        # Expressões relacionais e lógicas
-        if total >= 100:
-            print("Desconto disponível!")
-        else:
-            print("Sem desconto!")
+        if quantidade <= 0:  # Verifica se a quantidade é inválida
 
-    except ValueError:
-        print("Erro: Digite apenas números!")
+            print("Quantidade inválida!")  # Exibe mensagem
 
-    except IndexError:
-        print("Erro: Índice inexistente!")
+            return  # Encerra a função
+
+        produto = produtos[indice]  # Obtém o produto escolhido
+
+        total = produto.preco * quantidade  # Calcula o valor total
+
+        print("\nResumo da compra")  # Exibe título
+
+        print(f"Produto: {produto.nome}")  # Mostra o nome do produto
+
+        print(f"Quantidade: {quantidade}")  # Mostra a quantidade
+
+        print(f"Total a pagar: R$ {total:.2f}")  # Mostra o total da compra
+
+    except ValueError:  # Captura erro caso digite letras
+
+        print("Erro: Digite apenas números!")  # Exibe mensagem de erro
+
+    except IndexError:  # Captura erro de índice inexistente
+
+        print("Erro: Índice inexistente!")  # Exibe mensagem de erro
 
 
-# ==========================================
-# MENU PRINCIPAL
-# ==========================================
-
+# Loop principal do sistema
 while True:
 
-    print("\n==============================")
-    print(" SISTEMA DE CADASTRO E COMPRA ")
-    print("==============================")
-    print("1 - Cadastrar produto")
-    print("2 - Listar produtos")
-    print("3 - Comprar produto")
-    print("4 - Sair")
+    print("\nSistema de cadastro e compra")  # Exibe título do sistema
 
-    opcao = input("Escolha uma opção: ")
+    print("1 - Cadastrar produto")  # Opção 1
 
-    if opcao == "1":
-        cadastrar_produto()
+    print("2 - Listar produtos")  # Opção 2
 
-    elif opcao == "2":
-        listar_produtos()
+    print("3 - Comprar produto")  # Opção 3
 
-    elif opcao == "3":
-        comprar_produto()
+    print("4 - Sair")  # Opção 4
 
-    elif opcao == "4":
-        print("Encerrando o sistema...")
-        break
+    opcao = input("Escolha uma opção: ")  # Solicita a opção do usuário
 
-    else:
-        print("Opção inválida!")
+    if opcao == "1":  # Verifica se escolheu cadastrar produto
+
+        cadastrar_produto()  # Chama a função de cadastro
+
+    elif opcao == "2":  # Verifica se escolheu listar produtos
+
+        listar_produtos()  # Chama a função de listagem
+
+    elif opcao == "3":  # Verifica se escolheu comprar produto
+
+        comprar_produto()  # Chama a função de compra
+
+    elif opcao == "4":  # Verifica se escolheu sair
+
+        print("Encerrando o sistema...")  # Mensagem de encerramento
+
+        break  # Encerra o loop
+
+    else:  # Caso escolha uma opção inválida
+
+        print("Opção inválida!")  # Exibe mensagem de erro
